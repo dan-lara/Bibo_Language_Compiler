@@ -68,7 +68,7 @@ especiais [\"!#$%^&*()_+=.,/?-]
   return PULALINHA; 
 }
 "bibo" {
-  fprintf(reconhecimento, "{%2d} %-13s =\t\"%s\"\n", yylineno,"RETURN", yytext);
+  fprintf(reconhecimento, "{%2d} %-13s =\t\"%s\"\n", yylineno,"ENDLINE", yytext);
   fprintf(cpp, "endl");
   return ENDLINE;
 }
