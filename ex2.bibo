@@ -1,0 +1,35 @@
+int _LED(char led):
+    int valor = 0.
+    ? (led == '1'):
+        valor = 2.
+    !? (led == '7'):
+        valor = 3.
+    !? (led == '4'):
+        valor = 4.
+    !? (led == '2' ||| led == '3' ||| led == '5'):
+        valor = 5.
+    !? (led == '0' ||| led == '6' ||| led == '9'):
+        valor = 6.
+    !? (led == '8'):
+        valor = 7.
+    ;
+    retour valor.
+;
+
+
+dielson
+    int leds.
+    int i.
+    int j.
+    int total.
+    char c.
+    >< leds.
+    total = 0.
+    _4(i=0. i<leds. i++):
+        
+        >< c.
+        total = total + _LED(c).
+    ;
+    <> total << "LEDS" << bibo.
+
+edilson

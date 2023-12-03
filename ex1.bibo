@@ -1,0 +1,32 @@
+int _josephus(int n, int k):
+    int r = 0.
+    int i.
+    _4(i = 1. i<n. i++):
+        r = (r + k) % i.
+    ;
+    retour r.
+;
+
+
+dielson
+    int n.
+    int x.
+    int y.
+    int j.
+    _8 (true):
+        >< n.
+        ? (~n):
+            break.
+        ;
+        y = 1.
+        _8(~false):
+            int a = _josephus(n,y).
+            ? (a /= 11):
+                y++.
+            !:    
+                break.
+            ;
+        ;
+        <> y << bibo.
+    ;
+edilson

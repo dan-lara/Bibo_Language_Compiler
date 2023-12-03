@@ -61,16 +61,18 @@
 %token STRING  	 /* tipo STRING */
 %token NOMEFUNC /* nome funcao */
 
-%token MAIN             /* dielson */
-%token TRUE            /* true    */
-%token FALSE          /* false   */
-%token INT           /* int     */
-%token FLOAT        /* FLOAT   */
-%token CHAR        /* char    */
-%token ENDMAIN    /* edilson */
-%token PULALINHA /*   \n    */
-%token ENDLINE  /* "bibo"  */
-%token RETURN  /* retour  */
+%token MAIN               /* dielson */
+%token TRUE              /* true    */
+%token FALSE            /* false   */
+%token INT             /* int     */
+%token FLOAT          /* FLOAT   */
+%token CHAR          /* char    */
+%token ENDMAIN      /* edilson */
+%token PULALINHA   /*   \n    */
+%token ENDLINE    /* "bibo"  */
+%token RETURN    /* retour  */
+%token BREAK    /* break   */
+
 
 %type begin
 %type func
@@ -108,8 +110,8 @@ func: tipo NOMEFUNC ABRPARENTESES FECPARENTESES INICIO programa FIM PULALINHA
 parametros: tipo ID
 					| tipo ID SEPARADOR parametros
 
-chamadafunc: NOMEFUNC ABRPARENTESES FECPARENTESES PONTO 
-					 | NOMEFUNC ABRPARENTESES expparam FECPARENTESES PONTO
+chamadafunc: NOMEFUNC ABRPARENTESES FECPARENTESES  
+					 | NOMEFUNC ABRPARENTESES expparam FECPARENTESES 
 
 expparam: exp
 				| exp SEPARADOR expparam
@@ -118,7 +120,7 @@ programa: comandos programa
         | comandos
         ;
 
-comandos: ent 
+comandos: ent PONTO
         | out
         | expcond 
         | expfor
@@ -126,8 +128,9 @@ comandos: ent
         | dec
         | at PONTO 
         | PULALINHA
-				| chamadafunc
+				| chamadafunc PONTO
 				| RETURN exp PONTO
+        | BREAK PONTO
         ;
 
 tipo: INT
@@ -143,10 +146,12 @@ var: NUMINT
 dec: tipo ID PONTO
    | tipo ID ATR ID PONTO
    | tipo ID ATR var PONTO
+   | tipo ID ATR chamadafunc PONTO
    ;
 
 at:   ID ATR exp 
 		| ID AUTOATR
+    | ID ATR chamadafunc
 		;
 
 exp: exp SOMA exp
@@ -162,6 +167,7 @@ exp: exp SOMA exp
    | CARACTER
 	 | TRUE
 	 | FALSE
+   | chamadafunc
    ;
 
 out: SAIDA expout PONTO
@@ -174,31 +180,33 @@ expout: exp
 			| expout CONCATOUT expout
    		;
 
-ent: ENTRADA expent PONTO ;
+ent: ENTRADA expent ;
 
 expent: ID
       | expent CONCATIN expent
       ;
 
 explogic: ABRPARENTESES explogic FECPARENTESES
-      | exp IGUAL exp 
-      | exp MAIORIG exp 
-      | exp MENORIG exp 
-      | exp MAIOR exp 
-      | exp MENOR exp 
-      | exp DIFERENTE exp
-      | exp AND exp
-      | exp OR exp
-      | NOT exp
+      | explogic IGUAL explogic 
+      | explogic MAIORIG explogic 
+      | explogic MENORIG explogic 
+      | explogic MAIOR explogic 
+      | explogic MENOR explogic 
+      | explogic DIFERENTE explogic
+      | explogic AND explogic
+      | explogic OR explogic
+      | NOT explogic
 			| exp
       ;
 
 expcond: IF ABRPARENTESES explogic FECPARENTESES INICIO programa FIM 
 			|  IF ABRPARENTESES explogic FECPARENTESES INICIO programa ELSE INICIO programa FIM
-			|  IF ABRPARENTESES explogic FECPARENTESES INICIO programa ELSE IF ABRPARENTESES explogic FECPARENTESES INICIO programa FIM
+			|  IF ABRPARENTESES explogic FECPARENTESES INICIO programa ELSE expcond
 			;
 
-expwhile: WHILE ABRPARENTESES explogic FECPARENTESES INICIO programa FIM ;
+expwhile: WHILE ABRPARENTESES explogic FECPARENTESES INICIO programa FIM 
+        | WHILE ABRPARENTESES ent FECPARENTESES INICIO programa FIM
+        ;
 
 expfor: FOR ABRPARENTESES at PONTO explogic PONTO at FECPARENTESES INICIO programa FIM ;
 

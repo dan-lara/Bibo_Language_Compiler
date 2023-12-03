@@ -34,7 +34,7 @@ especiais [\"!#$%^&*()_+=.,/?-]
 }
 "int" { 
   fprintf(reconhecimento, "{%2d} %-13s =\t\"%s\"\n", yylineno,"INT", yytext);
-  fprintf(cpp, "int ");
+  fprintf(cpp, "long long ");
   return INT; 
 }
 "float" { 
@@ -56,6 +56,11 @@ especiais [\"!#$%^&*()_+=.,/?-]
   fprintf(reconhecimento, "{%2d} %-13s =\t\"%s\"\n", yylineno,"RETURN", yytext);
   fprintf(cpp, "return ");
   return RETURN; 
+}
+"break"  {
+  fprintf(reconhecimento, "{%2d} %-13s =\t\"%s\"\n", yylineno,"BREAK", yytext);
+  fprintf(cpp, "break ");
+  return BREAK;
 }
 \n|(\n(\n)+)  { 
   fprintf(reconhecimento, "{%2d} %-13s =\t\"\\n\"\n",yylineno-1, "PULALINHA");
