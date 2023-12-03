@@ -7,22 +7,23 @@ base a linguagem C++.
 
 Em comparação à primeira parte do trabalho, este possui as seguintes mudanças:
 
-- "dielson " e "edilson" são, respectivamente início e fim;
-- "retour" é return;
+- "dielson " e "edilson" são, respectivamente início e fim da main;
+- Foi adicionado "retour" = retorno da função
 - Foi adicionada string;
-- Foi adicionado encadeamento de entrada e saída.
+- Foi adicionado encadeamento na entrada e saída.
 
 ## Exercícios do Beecrowd
 
-É possível resolver estes exercícios utilizando a linguagem Bibo:
+Os exemplos fornecidos resolvem os seguintes problemas:
 
 - [Crise de Energia](https://www.beecrowd.com.br/judge/pt/problems/view/1031)
 - [LED](https://www.beecrowd.com.br/judge/pt/problems/view/1168)
+- [Fechem as Portas!](https://www.beecrowd.com.br/judge/pt/problems/view/1371)
 
 ## Ferramentas utilizadas
 
-- [Flex]
-- [Bison]
+- Flex
+- Bison
 
 ## Instalação
 

@@ -1,0 +1,14 @@
+dielson
+    int n.
+    int i.
+    >< n.
+    _8(n/=0):
+        <> "1".
+        _4(i=2. n>=i*i. i++):
+            <> " " << i*i.
+        ;
+        <> bibo.
+
+        >< n.
+    ;
+edilson
