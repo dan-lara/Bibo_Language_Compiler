@@ -111,6 +111,6 @@ int _nomeFuncao (int x, float, y, char z):
 
 ## Autores
 
-- [Daniel Ferreira Lara](https://github.com/Daniel-Ferreira-Lara)
+- [Daniel Ferreira Lara](https://github.com/dan-lara)
 - [Enzo Yukio Chinen](https://github.com/YukioZ25)
 - [Matheus Siston Galdino](https://github.com/matgaldino)
